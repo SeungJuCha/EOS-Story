@@ -2,7 +2,7 @@
 
 # Not Just a Subject: Capturing Adaptive Scene-Specific Variance for Visual Storytelling
 
-### ACCV 2026
+<h3>ACCV 2026&nbsp;&nbsp;<img src="figs/ACCV_Color-Logo_2026-1024x245.webp" width="180" alt="ACCV 2026 logo"></h3>
 
 [*SeungJu Cha*](https://openreview.net/profile?id=~SeungJu_Cha1)&nbsp;·&nbsp;[*Ye-Chan Kim*](https://openreview.net/profile?id=~Ye-Chan_Kim1)&nbsp;·&nbsp;[*Kwanyoung Lee*](https://github.com/mobled37)&nbsp;·&nbsp;[*Dong-Jin Kim*](https://openreview.net/profile?id=~Dong-Jin_Kim1)
 
@@ -56,32 +56,20 @@ Run commands from the repository root:
 
 ```bash
 bash test.sh single
-bash test.sh multi
-bash test.sh pose
 ```
 
-Run all three examples with:
-
-```bash
-bash test.sh all
-```
-
-| Example | Configuration |
-| --- | --- |
-| Single subject | Phoenix, 2 scenes, seed 12, λ = 0.55 |
-| Multiple subjects | Man and woman, 5 scenes, seed 44, λ = 0.6 |
-| OpenPose ControlNet | Man, 2 scenes, seed 12, λ = 0.55 |
+This generates the included single-subject phoenix story with two scenes, seed 12, and λ = 0.55.
 
 Use `--dry_run` to validate inputs and output paths without loading SDXL:
 
 ```bash
-bash test.sh all --dry_run
+bash test.sh single --dry_run
 ```
 
 Set `PYTHON` when a specific environment is needed:
 
 ```bash
-PYTHON=/path/to/env/bin/python bash test.sh multi
+PYTHON=/path/to/env/bin/python bash test.sh single
 ```
 
 ## Custom Stories
@@ -98,60 +86,16 @@ animals:
       - soaring through a glowing sky
 ```
 
-For multiple subjects, use lists with the same order and length. Each concept token must appear in its corresponding subject description.
-
-```yaml
-multi_characters:
-  - concept_token: [man, woman]
-    subject: [a man in a suit, a woman in a red dress]
-    style: A hyper-realistic digital painting of
-    settings:
-      - with a woman in the park
-      - buying a flower with a woman
-```
-
 Generate any benchmark with:
 
 ```bash
 python run_eosstory.py --benchmark benchmark/consistory+.yaml
 ```
 
-`generate_all.sh` runs every YAML file in `benchmark/`. The fixed multi-subject example uses seed 44 and λ = 0.6; all other benchmarks use the paper defaults.
+`generate_all.sh` runs every YAML file in `benchmark/`.
 
 ```bash
 bash generate_all.sh
-```
-
-## OpenPose ControlNet
-
-EOS-Story accepts precomputed OpenPose maps and does not extract poses from source photographs. Pose paths in YAML are resolved relative to that YAML file.
-
-```yaml
-humans:
-  - concept_token: man
-    subject: a man in a suit
-    style: A hyper-realistic digital painting of
-    settings:
-      - standing in a park
-      - sitting on a bench in a park
-    pose:
-      - ../poses/person_openpose.png
-      - ../poses/sitting_openpose.png
-```
-
-The following pose layouts are supported:
-
-- One map shared by all scenes.
-- One map per scene, in `settings` order.
-- Identity maps followed by scene maps, one map per generated image.
-
-Command-line pose maps override the YAML values:
-
-```bash
-python run_eosstory.py \
-  --benchmark benchmark/test_controlnet.yaml \
-  --pose poses/person_openpose.png poses/sitting_openpose.png \
-  --controlnet_scale 0.9
 ```
 
 ## Generation Settings
@@ -188,32 +132,6 @@ EOS-Story_ACCV2026/
 └── generate_all.sh
 ```
 
-The paper components map directly to the implementation:
-
-| Component | Implementation |
-| --- | --- |
-| Cross-Contextual Bridging | `pipeline_eosstory.py`: `cross_contextual_bridging()` |
-| Identity Anchoring | `attention_processor.py`: `identity_anchoring()` |
-| Identity-Aware Self-Attention | `attention_processor.py`: `identity_aware_self_attention()` |
-| Prompt and token preparation | `eosstory_utils.py`: `prepare_story_inputs()` |
-
-`run_eosstory.py` now follows a short path: load the benchmark, load SDXL, prepare one story, register IA/IASA, generate with CCB, and save scenes.
-
-## Results
-
-Only scene images are exported. Identity images are generated internally for EOS-Story but are not saved.
-
-```text
-results/
-└── consistory_multi_seed44_sa0.6/
-    └── multi_characters/
-        └── multi_characters_0/
-            └── result/
-                ├── scene_0.png
-                ├── scene_1.png
-                └── ...
-```
-
 ## Extensions
 
 The same EOS-Story formulation supports pose-guided generation, different SDXL-family checkpoints, and stories containing multiple subjects.
@@ -240,17 +158,61 @@ The same EOS-Story formulation supports pose-guided generation, different SDXL-f
   </tr>
 </table>
 
+### Multi-Subject Generation
+
+Use lists for `concept_token` and `subject`, keeping the same order and length. Each concept token must appear in its corresponding subject description.
+
+```yaml
+multi_characters:
+  - concept_token: [man, woman]
+    subject: [a man in a suit, a woman in a red dress]
+    style: A hyper-realistic digital painting of
+    settings:
+      - with a woman in the park
+      - buying a flower with a woman
+```
+
+Run the included multi-subject example with seed 44 and λ = 0.6:
+
+```bash
+bash test.sh multi
+```
+
+### OpenPose ControlNet Generation
+
+EOS-Story accepts precomputed OpenPose maps and does not extract poses from source photographs. Pose paths in YAML are resolved relative to the YAML file.
+
+```yaml
+humans:
+  - concept_token: man
+    subject: a man in a suit
+    style: A hyper-realistic digital painting of
+    settings:
+      - standing in a park
+      - sitting on a bench in a park
+    pose:
+      - ../poses/person_openpose.png
+      - ../poses/sitting_openpose.png
+```
+
+Run the included pose-guided example with:
+
+```bash
+bash test.sh pose
+```
+
+One map may be shared by all scenes, supplied once per scene in `settings` order, or supplied once per generated identity and scene with the identity maps first. Command-line `--pose` paths override the YAML values.
+
+Run the single-subject, multi-subject, and ControlNet examples together with:
+
+```bash
+bash test.sh all
+```
+
 ## Acknowledgments
 
-The SDXL pipeline is adapted from Hugging Face Diffusers. Identity-Aware Self-Attention builds on Consistory, and the benchmarks build on Consistory+ from One-Prompt-One-Story. Upstream attribution and licenses are included in `NOTICE` and `THIRD_PARTY_LICENSES/`.
+The SDXL pipeline is adapted from Hugging Face Diffusers. Identity-Aware Self-Attention builds on [Consistory](https://github.com/NVlabs/consistory), and the benchmarks build on [One-Prompt-One-Story](https://github.com/byliutao/1Prompt1Story). Upstream attribution and licenses are included in `NOTICE` and `THIRD_PARTY_LICENSES/`.
 
 ## Citation
 
-```bibtex
-@inproceedings{cha2026eosstory,
-  title     = {Not Just a Subject: Capturing Adaptive Scene-Specific Variance for Visual Storytelling},
-  author    = {Cha, SeungJu and Kim, Ye-Chan and Lee, Kwanyoung and Kim, Dong-Jin},
-  booktitle = {Asian Conference on Computer Vision},
-  year      = {2026}
-}
-```
+To be released.
