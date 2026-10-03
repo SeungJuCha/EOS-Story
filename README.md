@@ -4,7 +4,7 @@
 
 <h3>ACCV 2026&nbsp;&nbsp;<img src="figs/ACCV_Color-Logo_2026-white.png" width="210" alt="ACCV 2026 logo on a white background"></h3>
 
-[*SeungJu Cha*](https://openreview.net/profile?id=~SeungJu_Cha1)&nbsp;·&nbsp;[*Ye-Chan Kim*](https://openreview.net/profile?id=~Ye-Chan_Kim1)&nbsp;·&nbsp;[*Kwanyoung Lee*](https://github.com/mobled37)&nbsp;·&nbsp;[*Dong-Jin Kim*](https://openreview.net/profile?id=~Dong-Jin_Kim1)
+[*SeungJu Cha*](https://scholar.google.com/citations?hl=ko&view_op=list_works&gmla=AERr9JH6kYtVG33b8g1ZO2PpZ5xfSW33MIERzTGyYxcdDh8_d8z5GBEwTpCOZRoWWqQEDves1k4ZtWTRUTCHvPmKpRE5TzEvz5G5wjdBQzUZEJHYwrzoQAwOtZ2EHS0&user=lVmI_MgAAAAJ) ([LinkedIn](https://www.linkedin.com/in/seungju-cha-3a3061301/?isSelfProfile=true))&nbsp;·&nbsp;[*Ye-Chan Kim*](https://scholar.google.com/citations?user=HBHVFMIAAAAJ&hl=ko)&nbsp;·&nbsp;[*Kwanyoung Lee*](https://github.com/mobled37)&nbsp;·&nbsp;*Dong-Jin Kim*
 
 **📄 Paper: coming soon · arXiv: coming soon**
 
