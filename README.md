@@ -2,7 +2,7 @@
 
 # Not Just a Subject: Capturing Adaptive Scene-Specific Variance for Visual Storytelling
 
-<h3>ACCV 2026&nbsp;&nbsp;<img src="figs/ACCV_Color-Logo_2026-1024x245.webp" width="180" alt="ACCV 2026 logo"></h3>
+<h3>ACCV 2026&nbsp;&nbsp;<img src="figs/ACCV_Color-Logo_2026-white.png" width="210" alt="ACCV 2026 logo on a white background"></h3>
 
 [*SeungJu Cha*](https://openreview.net/profile?id=~SeungJu_Cha1)&nbsp;·&nbsp;[*Ye-Chan Kim*](https://openreview.net/profile?id=~Ye-Chan_Kim1)&nbsp;·&nbsp;[*Kwanyoung Lee*](https://github.com/mobled37)&nbsp;·&nbsp;[*Dong-Jin Kim*](https://openreview.net/profile?id=~Dong-Jin_Kim1)
 
