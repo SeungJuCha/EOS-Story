@@ -1,0 +1,27 @@
+multi_characters:
+- concept_token: 
+  - man
+  - woman
+  settings:
+  - with a woman in the park
+  - buying a flower with a woman
+  - and a woman eating a food in a restaurant
+  - and a woman in a library
+  - and a woman sitting on a bench
+  style: A hyper-realistic digital painting of
+  subject:
+  - a man in a suit
+  - a woman in a red dress
+- concept_token: 
+  - kid
+  - dog
+  settings:
+  - with a dog on the bed
+  - feeding a dog
+  - sitting on the roof with a dog
+  - and a dog sitting on a bench
+  - giving the dog a bath in the tub
+  style: A hyper-realistic digital painting of
+  subject:
+  - a kid with brown hair
+  - a brown dog

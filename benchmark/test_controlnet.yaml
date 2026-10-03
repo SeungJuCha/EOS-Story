@@ -1,0 +1,10 @@
+humans:
+- concept_token: man
+  subject: a man in a suit
+  style: A hyper-realistic digital painting of
+  settings:
+  - standing in a park
+  - sitting on a bench in a park
+  pose:
+  - ../poses/person_openpose.png
+  - ../poses/sitting_openpose.png

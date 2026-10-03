@@ -1,0 +1,8 @@
+The SDXL pipeline contains portions adapted from Hugging Face Diffusers 0.29.0.
+Copyright 2024 The HuggingFace Team. All rights reserved.
+These upstream portions are licensed under the Apache License, Version 2.0.
+The upstream license is included in THIRD_PARTY_LICENSES/diffusers-LICENSE.txt.
+
+EOS-Story modifications add prompt decomposition, EOS appearance-residual
+infusion, and identity-aware story generation. This notice identifies the
+upstream portions and does not assign a license to the original EOS-Story code.
