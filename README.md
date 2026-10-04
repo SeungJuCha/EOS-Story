@@ -211,7 +211,7 @@ bash test.sh all
 
 ## Acknowledgments
 
-The SDXL pipeline is adapted from Hugging Face Diffusers. Identity-Aware Self-Attention builds on [Consistory](https://github.com/NVlabs/consistory), and the benchmarks build on [One-Prompt-One-Story](https://github.com/byliutao/1Prompt1Story). Upstream attribution and licenses are included in `NOTICE` and `THIRD_PARTY_LICENSES/`.
+The SDXL pipeline is adapted from Hugging Face Diffusers. Identity-Aware Self-Attention builds on [Consistory](https://github.com/NVlabs/consistory). Our `Consistory+_+` benchmark is built using both [One-Prompt-One-Story](https://github.com/byliutao/1Prompt1Story) and [ShotBench](https://github.com/Vchitect/ShotBench). Upstream attribution and licenses are included in `NOTICE` and `THIRD_PARTY_LICENSES/`.
 
 ## Citation
 
